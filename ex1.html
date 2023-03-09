@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="myCanvas" width="800" height="600" style="border-style: solid; border-width: 3px; border-color: blue"></canvas>
+<script>
+    class Rectangle {
+        constructor(length, width) {
+            this.length = length
+            this.width = width
+        }
+
+        getArea() {
+            return this.length * this.width
+        }
+
+        getPerimeter() {
+            return 2 * (this.length + this.width)
+        }
+
+        drawCanvas() {
+            let ctx = document.getElementById("myCanvas").getContext("2d")
+            ctx.beginPath()
+            ctx.rect(20, 20, this.length, this.width)
+            ctx.stroke()
+        }
+    }
+
+    let rect1 = new Rectangle(150, 100)
+    rect1.drawCanvas()
+    rect1.length = 200
+    rect1.width = 150
+    alert(rect1.getArea())
+    alert(rect1.getPerimeter())
+</script>
+</body>
+</html>
