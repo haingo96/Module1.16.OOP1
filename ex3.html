@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Mobile {
+        constructor(battery, textingMemory, inboxMemory, sentMemory) {
+            if (Number.isInteger(battery) && battery >= 0 && battery <= 100) {
+                this.battery = battery
+            }
+            this.textingMemory = textingMemory
+            this.inboxMemory = inboxMemory
+            this.sentMemory = sentMemory
+        }
+
+        isOn() {
+            return true
+        }
+
+        turnOnAndOff() {
+            this.battery--
+            if (this.isOn()) {
+                return !this.isOn()
+            } else {
+                return this.isOn()
+            }
+        }
+
+        createMessage(messageNth) {
+            if (this.isOn()) {
+                return messageNth
+            }
+            this.battery--
+        }
+
+        receiveMessage(messageNth) {
+            if (this.isOn()) {
+                alert(messageNth.content)
+            }
+            this.battery--
+        }
+
+        sendMessage(messageNth) {
+            if (this.isOn()) {
+                return messageNth.content
+            }
+            this.battery--
+        }
+
+        checkInbox(messageNth) {
+            if (this.isOn()) {
+                return messageNth.content
+            }
+            this.battery--
+        }
+
+        checkSent() {
+            if (this.isOn()) {
+                checkSentMessage()
+            }
+            this.battery--
+        }
+    }
+
+    class Message {
+        constructor(content, messageTo) {
+            this.content = content
+            this.messageTo = messageTo
+        }
+    }
+
+    let iphone = new Mobile(100, 100, 100, 100)
+    let nokia = new Mobile(150, 80, 80, 80)
+    let message1 = new Message('Hello', iphone)
+    nokia.createMessage(message1)
+    nokia.sendMessage(nokia.createMessage(message1))
+
+    iphone.checkInbox(message1)
+    iphone.receiveMessage(message1)
+
+</script>
+</body>
+</html>
